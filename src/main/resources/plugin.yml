@@ -1,0 +1,23 @@
+name: HelloPlugin
+version: '1.0.0'
+main: me.aperro.hello.HelloPlugin
+api-version: '1.21'
+author: Aperro
+
+commands:
+  getcustomitem:
+    description: Create a magic item
+    usage: /getcustomitem
+    permission: getcustomitem.admin
+    aliases: [mystic]
+  roll:
+    description: get a random numer from 1 to 20
+    usage: /roll
+  randomreward:
+    description: give 16 diamonds, 8 gold ingots or 1 enchanted golden apple
+    usage: /randomrewards
+    permission: randomreward.use
+permissions:
+  getcustomitem.admin:
+    description: Only admin can create this item
+    default: op
