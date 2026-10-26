@@ -3,6 +3,7 @@ package me.aperro.hello;
 
 import me.aperro.hello.ActionListener.CustomEnterMessage;
 import me.aperro.hello.ActionListener.LuckyMiner;
+import me.aperro.hello.ActionListener.OreMaster;
 import me.aperro.hello.command.ComandRoll;
 import me.aperro.hello.command.ItemCommand;
 import me.aperro.hello.command.RandomReward;
@@ -40,7 +41,7 @@ public final class HelloPlugin extends JavaPlugin {
                 .registerEvents(new CustomEnterMessage(), this);
 
         getServer().getPluginManager()
-                .registerEvents(new LuckyMiner(), this);
+                .registerEvents(new OreMaster(), this);
 
     }
 
