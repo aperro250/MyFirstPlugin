@@ -1,0 +1,19 @@
+ore-master:
+  enabled: true
+ # The chance is 1/x. x is the number in the config
+  rewards:
+    diamond:
+      chance: 4
+      amount: 2
+
+    emerald:
+      chance: 10
+      amount: 2
+
+    gold:
+      chance: 4
+      amount: 2
+
+    lapis:
+      chance: 5
+      amount: 2

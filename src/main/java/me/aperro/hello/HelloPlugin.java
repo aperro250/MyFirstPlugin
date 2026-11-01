@@ -2,7 +2,6 @@
 package me.aperro.hello;
 
 import me.aperro.hello.ActionListener.CustomEnterMessage;
-import me.aperro.hello.ActionListener.LuckyMiner;
 import me.aperro.hello.ActionListener.OreMaster;
 import me.aperro.hello.command.ComandRoll;
 import me.aperro.hello.command.ItemCommand;
@@ -13,7 +12,30 @@ public final class HelloPlugin extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        getLogger().info("Мой первый Minecraft-плагин запущен!");
+
+        saveDefaultConfig();
+
+        final String[] ores = {
+                "diamond",
+                "emerald",
+                "gold",
+                "lapis"
+        };
+        boolean pluginOff = false;
+
+        for (String ore : ores) {
+            if (getConfig().getInt("ore-master.rewards." + ore + ".chance") <= 0 ||
+                    getConfig().getInt("ore-master.rewards." + ore + ".amount") <= 0) {
+                getLogger().warning("Bad config for ore-master ore " + ore);
+                pluginOff = true;
+            }
+        }
+
+        if (pluginOff){
+            getLogger().warning("Shutting down HelloPlugin!");
+            getServer().getPluginManager().disablePlugin(this);
+            return;
+        }
 
         if (getCommand("getcustomitem") != null) {
             getCommand("getcustomitem").setExecutor(new ItemCommand());
@@ -41,7 +63,7 @@ public final class HelloPlugin extends JavaPlugin {
                 .registerEvents(new CustomEnterMessage(), this);
 
         getServer().getPluginManager()
-                .registerEvents(new OreMaster(), this);
+                .registerEvents(new OreMaster(getConfig()), this);
 
     }
 
